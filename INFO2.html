@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에스티 로더 핑크리본 캠페인 심층 분석</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #FFF1F2; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%; 
+            margin-left: auto;
+            margin-right: auto;
+            height: 28rem; 
+            max-height: 480px; 
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 32rem; 
+            }
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+        .kpi-number {
+            font-size: 3.5rem;
+            line-height: 1;
+            font-weight: 900;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.3rem 0.8rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: #BE185D;
+            background-color: #F9A8D4;
+        }
+        .brand-icon {
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+        
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-pink': {
+                            100: '#FCE7F3',
+                            300: '#F9A8D4',
+                            500: '#EC4899', 
+                            700: '#BE185D', 
+                            900: '#831843'
+                        },
+                        'brand-gray': {
+                            700: '#374151',
+                            900: '#111827',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-brand-gray-900">
+
+    <header class="bg-brand-pink-700 shadow-xl sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto p-4 md:p-6 flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl font-extrabold text-white">🎀 핑크리본 캠페인 심층 분석</h1>
+            <p class="text-white text-sm md:text-base">에스티 로더 컴퍼니즈의 글로벌 영향력 연구</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-4 sm:p-8 space-y-20">
+
+        <section class="mt-8">
+            <h2 class="text-4xl font-extrabold text-brand-pink-900 mb-4 text-center">캠페인 개요: 비전과 유산</h2>
+            <p class="text-xl text-brand-gray-700 max-w-4xl mx-auto text-center mb-12">
+                핑크리본 캠페인은 1992년 에블린 H. 로더 여사가 시작한 단순한 공익 캠페인을 넘어, 이제 전 세계 70여 개국에서 유방암 종식을 위해 교육, 연구, 의료 서비스를 지원하는 글로벌 사회 운동으로 자리매김했습니다.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="card md:col-span-2 flex flex-col justify-center items-center p-8 bg-brand-pink-100">
+                    <p class="text-4xl font-bold text-brand-pink-700 mb-2 kpi-number">30+</p>
+                    <p class="text-xl font-semibold text-brand-gray-700">캠페인 지속 기간 (년)</p>
+                </div>
+                <div class="card flex flex-col justify-center items-center p-8">
+                    <p class="text-4xl font-bold text-brand-pink-700 mb-2 kpi-number">70+</p>
+                    <p class="text-xl font-semibold text-brand-gray-700">참여 국가 수</p>
+                </div>
+                <div class="card flex flex-col justify-center items-center p-8">
+                    <p class="text-4xl font-bold text-brand-pink-700 mb-2 kpi-number">18+</p>
+                    <p class="text-xl font-semibold text-brand-gray-700">참여 브랜드 수</p>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h3 class="text-3xl font-bold text-brand-gray-900 mb-4">전략적 연관성: 여성의 아름다움과 건강</h3>
+            <p class="text-lg text-brand-gray-700 max-w-4xl mb-8">
+                에스티 로더 컴퍼니즈(ELC)에게 핑크리본 캠페인은 단순한 CSR이 아닌 핵심 브랜드 전략입니다. ELC는 여성을 위한 뷰티 제품을 생산하며, 여성 건강 증진을 통해 고객층과의 신뢰와 진정성을 구축합니다. 이는 **'여성의 삶을 향상시킨다'**는 기업 비전과 직접적으로 연결됩니다.
+            </p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="card border-t-4 border-brand-pink-500">
+                    <h4 class="text-2xl font-bold text-brand-pink-700 mb-3">1. 진정성 확보</h4>
+                    <p class="text-brand-gray-700">창립자부터 이어진 캠페인 유산은 일시적인 마케팅이 아닌, 기업 DNA의 일부임을 증명하여 브랜드 진정성을 높입니다.</p>
+                </div>
+                <div class="card border-t-4 border-brand-pink-500">
+                    <h4 class="text-2xl font-bold text-brand-pink-700 mb-3">2. 고객 공감대 형성</h4>
+                    <p class="text-brand-gray-700">핵심 고객층인 여성들의 가장 중요한 건강 문제에 깊이 관여함으로써 강력한 감정적 유대감과 로열티를 형성합니다.</p>
+                </div>
+                <div class="card border-t-4 border-brand-pink-500">
+                    <h4 class="text-2xl font-bold text-brand-pink-700 mb-3">3. 글로벌 리더십</h4>
+                    <p class="text-brand-gray-700">전 세계적인 규모의 캠페인 운영은 ELC를 뷰티 산업을 넘어 사회적 책임을 다하는 글로벌 기업 리더로 포지셔닝합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="text-3xl font-bold text-brand-gray-900 mb-4 text-center">글로벌 영향력 시각화 및 BCRF 연구 목표</h3>
+            <p class="text-lg text-brand-gray-700 max-w-4xl mx-auto text-center mb-8">
+                캠페인 모금액은 유방암 연구 재단(BCRF)을 통해 고도로 집중된 연구 분야에 투입되어, 가장 시급한 미해결 과제들을 해결하는 데 기여합니다.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card">
+                    <h4 class="text-2xl font-bold text-brand-pink-700 mb-4">BCRF 연구 분야별 기금 배분 (가상 데이터)</h4>
+                    <div class="chart-container h-96 max-h-[400px]">
+                        <canvas id="bcrfFundingChart"></canvas>
+                    </div>
+                    <p class="text-sm text-brand-gray-700 mt-4">
+                        BCRF는 특히 전이성 암(Metastatic Cancer)과 유전학 연구에 중점을 두어 생존율 향상에 집중합니다.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h4 class="text-2xl font-bold text-brand-pink-700 mb-4">주요 BCRF 연구 영역</h4>
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start">
+                            <span class="text-4xl text-brand-pink-500 mr-4">🧬</span>
+                            <div>
+                                <h5 class="font-bold text-lg text-brand-gray-900">유전학 및 유방암 위험</h5>
+                                <p class="text-brand-gray-700 text-base">BRCA 유전자 변이 등 고위험군에 대한 예측 및 예방 전략 개발에 기여.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-4xl text-brand-pink-500 mr-4">🦠</span>
+                            <div>
+                                <h5 class="font-bold text-lg text-brand-gray-900">면역치료법 및 내성 극복</h5>
+                                <p class="text-brand-gray-700 text-base">새로운 면역 기반 치료법 개발 및 기존 치료법에 대한 내성 문제 해결 연구.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-4xl text-brand-pink-500 mr-4">🎯</span>
+                            <div>
+                                <h5 class="font-bold text-lg text-brand-gray-900">전이성 암 (4기)</h5>
+                                <p class="text-brand-gray-700 text-base">현재 치유가 어려운 전이성 유방암을 관리하고 궁극적으로 치유하기 위한 연구에 최우선 투자.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="text-3xl font-bold text-brand-gray-900 mb-8 text-center">브랜드 협력: ELC 산하 주요 브랜드 참여 현황 (가상 데이터)</h3>
+            <p class="text-lg text-brand-gray-700 max-w-4xl mx-auto text-center mb-10">
+                에스티 로더 컴퍼니즈 산하의 뷰티 브랜드들은 핑크리본 에디션 제품 판매 수익금 기부, 자체 캠페인 진행 등 다양한 방식으로 동참하며 시너지를 창출합니다.
+            </p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="card p-5 text-center bg-brand-pink-100">
+                    <p class="brand-icon">🌸</p>
+                    <h4 class="font-bold text-brand-pink-700">Estée Lauder</h4>
+                    <p class="text-2xl font-extrabold text-brand-gray-900 mt-1">45%</p>
+                    <p class="text-sm text-brand-gray-700">총 기금 기여율</p>
+                </div>
+                <div class="card p-5 text-center bg-brand-pink-100">
+                    <p class="brand-icon">💧</p>
+                    <h4 class="font-bold text-brand-pink-700">La Mer</h4>
+                    <p class="text-2xl font-extrabold text-brand-gray-900 mt-1">20%</p>
+                    <p class="text-sm text-brand-gray-700">총 기금 기여율</p>
+                </div>
+                <div class="card p-5 text-center bg-brand-pink-100">
+                    <p class="brand-icon">🧪</p>
+                    <h4 class="font-bold text-brand-pink-700">Clinique</h4>
+                    <p class="text-2xl font-extrabold text-brand-gray-900 mt-1">15%</p>
+                    <p class="text-sm text-brand-gray-700">총 기금 기여율</p>
+                </div>
+                <div class="card p-5 text-center bg-brand-pink-100">
+                    <p class="brand-icon">🌿</p>
+                    <h4 class="font-bold text-brand-pink-700">Aveda & Others</h4>
+                    <p class="text-2xl font-extrabold text-brand-gray-900 mt-1">20%</p>
+                    <p class="text-sm text-brand-gray-700">총 기금 기여율</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="text-3xl font-bold text-brand-gray-900 mb-4 text-center">유방암 진단 및 생존율 추세 분석</h3>
+            <p class="text-lg text-brand-gray-700 max-w-4xl mx-auto text-center mb-8">
+                캠페인이 시작된 1990년대 이후, 조기 진단 노력과 연구 발전 덕분에 유방암의 5년 상대 생존율은 지속적으로 향상되고 있습니다. (가상의 통계 데이터)
+            </p>
+            
+            <div class="card">
+                 <h4 class="text-2xl font-bold text-brand-pink-700 mb-4">시간 경과에 따른 5년 상대 생존율 변화 (가상 데이터)</h4>
+                <div class="chart-container h-96 max-h-[480px]">
+                    <canvas id="survivalTrendChart"></canvas>
+                </div>
+                <p class="text-sm text-brand-gray-700 mt-4 text-center">
+                    1980년대 후반 75% 수준이던 생존율은 캠페인과 연구 발전이 가속화된 2010년대 이후 90% 이상으로 증가했습니다. 이는 인식 개선 활동의 중요성을 보여줍니다.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-brand-pink-900 text-white mt-20 p-8 md:p-12 text-center">
+        <p class="text-2xl font-bold">"우리가 함께 유방암을 영원히 종식시킬 때까지 멈추지 않을 것입니다."</p>
+        <p class="mt-4 text-sm text-brand-pink-300">— 에블린 H. 로더 여사 (1992-2011)</p>
+    </footer>
+
+    <script>
+        function createChart(ctxId, type, data, options) {
+            const ctx = document.getElementById(ctxId).getContext('2d');
+            new Chart(ctx, {
+                type: type,
+                data: data,
+                options: options
+            });
+        }
+
+        const tooltipConfig = {
+            plugins: {
+                tooltip: {
+                    backgroundColor: '#111827',
+                    titleColor: '#FFFFFF',
+                    bodyColor: '#FFFFFF',
+                    titleFont: { size: 14, weight: 'bold' },
+                    bodyFont: { size: 12 },
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const chartColors = ['#EC4899', '#BE185D', '#F9A8D4', '#F472B6', '#E879F9']; 
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. BCRF Funding Distribution Chart (Doughnut)
+            const bcrfData = {
+                labels: ['전이성 암 연구', '유전학 및 예방', '면역치료법', '조기 진단 기술'],
+                datasets: [{
+                    data: [35, 25, 20, 20],
+                    backgroundColor: chartColors.slice(0, 4),
+                    hoverOffset: 10
+                }]
+            };
+            const bcrfOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: '#111827',
+                            font: {
+                                size: 14
+                            },
+                            padding: 20
+                        }
+                    },
+                    ...tooltipConfig.plugins 
+                }
+            };
+            createChart('bcrfFundingChart', 'doughnut', bcrfData, bcrfOptions);
+
+            // 2. Survival Trend Chart (Line)
+            const survivalTrendData = {
+                labels: ['1980s', '1990s (캠페인 시작)', '2000s', '2010s', '2020s'],
+                datasets: [{
+                    label: '5년 상대 생존율 (%)',
+                    data: [75, 81, 87, 91, 93],
+                    borderColor: '#BE185D',
+                    backgroundColor: 'rgba(236, 72, 153, 0.2)',
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 3,
+                    pointRadius: 5,
+                    pointHoverRadius: 8
+                }]
+            };
+            const survivalTrendOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 70,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) { return value + '%'; },
+                            color: '#4B5563'
+                        },
+                         grid: { color: '#E5E7EB' }
+                    },
+                    x: {
+                        ticks: { color: '#111827' },
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: '유방암 5년 상대 생존율 추이 (가상 데이터)',
+                        font: { size: 18, weight: 'bold' },
+                        color: '#111827',
+                        padding: { bottom: 20 }
+                    },
+                    ...tooltipConfig.plugins 
+                }
+            };
+            createChart('survivalTrendChart', 'line', survivalTrendData, survivalTrendOptions);
+
+        });
+    </script>
+</body>
+</html>

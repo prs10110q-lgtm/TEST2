@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴 | Estée Lauder 성수 팝업 스토어</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #ffb6c1 0%, #ffd6e0 100%);
+            min-height: 100vh;
+            padding: 60px 40px;
+            color: #333;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .menu-icon {
+            font-size: 28px;
+            cursor: pointer;
+            color: #333;
+            z-index: 1001;
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: white;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        /* 사이드바 메뉴 */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            left: -350px;
+            width: 350px;
+            height: 100vh;
+            background: white;
+            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .sidebar-menu.active {
+            left: 0;
+        }
+
+        .sidebar-header {
+            padding: 30px;
+            background: linear-gradient(135deg, #ffb6c1 0%, #ffd6e0 100%);
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+
+        .sidebar-logo {
+            font-size: 20px;
+            font-weight: 900;
+            color: #000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #333;
+            background: none;
+            border: none;
+        }
+
+        .sidebar-tagline {
+            font-size: 13px;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+
+        .sidebar-nav-item {
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .sidebar-nav-item:hover {
+            background: #fff0f5;
+            border-left-color: #ff1493;
+        }
+
+        .sidebar-nav-icon {
+            font-size: 24px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .sidebar-nav-text {
+            flex: 1;
+        }
+
+        .sidebar-nav-text h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-nav-text p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 999;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 40px 20px;
+            }
+
+            .menu-icon {
+                top: 20px;
+                left: 20px;
+            }
+
+            .sidebar-menu {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar-overlay active" id="sidebarOverlay"></div>
+
+    <aside class="sidebar-menu active" id="sidebarMenu">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                Estée Lauder
+                <span role="img" aria-label="pink ribbon">🎀</span>
+            </div>
+            <p class="sidebar-tagline">성수 팝업 스토어 안내 메뉴</p>
+            <button class="sidebar-close" id="closeMenuBtn" aria-label="메뉴 닫기">×</button>
+        </div>
+        <nav class="sidebar-nav">
+            <a class="sidebar-nav-item" href="index.html">
+                <span class="sidebar-nav-icon">🏠</span>
+                <div class="sidebar-nav-text">
+                    <h4>메인 페이지</h4>
+                    <p>핑크 리본 팝업 스토어 메인으로 이동</p>
+                </div>
+            </a>
+            <a class="sidebar-nav-item" href="https://gemini.google.com/share/2c190a32ab36" target="_blank"
+                rel="noopener">
+                <span class="sidebar-nav-icon">🏛️</span>
+                <div class="sidebar-nav-text">
+                    <h4>공간 스토리</h4>
+                    <p>체험 공간 구성과 디자인 컨셉</p>
+                </div>
+            </a>
+            <a class="sidebar-nav-item" href="INFO2.html">
+                <span class="sidebar-nav-icon">🎗️</span>
+                <div class="sidebar-nav-text">
+                    <h4>핑크 리본 캠페인</h4>
+                    <p>캠페인 취지와 참여 프로그램</p>
+                </div>
+            </a>
+            <a class="sidebar-nav-item" href="index.html#location">
+                <span class="sidebar-nav-icon">📌</span>
+                <div class="sidebar-nav-text">
+                    <h4>방문 정보</h4>
+                    <p>예약, 위치, 운영 시간 확인</p>
+                </div>
+            </a>
+            <a class="sidebar-nav-item" href="https://ai.studio/apps/drive/18_PgFs0x6OIp7i3_BT_x4DsjTv3WQta7"
+                target="_blank">
+                <span class="sidebar-nav-icon">✨</span>
+                <div class="sidebar-nav-text">
+                    <h4>체험 프로그램</h4>
+                    <p>핑크리본 캠페인 3D 가상 체험</p>
+                </div>
+            </a>
+            <a class="sidebar-nav-item" href="#events">
+                <span class="sidebar-nav-icon">🎁</span>
+                <div class="sidebar-nav-text">
+                    <h4>이벤트 & 혜택</h4>
+                    <p>한정 사은품과 이벤트 일정</p>
+                </div>
+            </a>
+            <a class="sidebar-nav-item"
+                href="https://ai.studio/apps/drive/1KbPsj6D1CGLWfB1E7dz4317lVhrt-Afx?fullscreenApplet=true"
+                target="_blank">
+                <span class="sidebar-nav-icon">💬</span>
+                <div class="sidebar-nav-text">
+                    <h4>문의하기</h4>
+                    <p>빠른 상담 및 고객 응대 채널</p>
+                </div>
+            </a>
+        </nav>
+    </aside>
+
+    <button class="menu-icon hidden" id="openMenuBtn">☰</button>
+
+    <script>
+        const openMenuBtn = document.getElementById('openMenuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function openMenu() {
+            sidebarMenu.classList.add('active');
+            sidebarOverlay.classList.add('active');
+            openMenuBtn.classList.add('hidden');
+        }
+
+        function closeMenu() {
+            sidebarMenu.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            openMenuBtn.classList.remove('hidden');
+            window.location.href = 'index.html';
+        }
+
+        openMenuBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        sidebarOverlay.addEventListener('click', closeMenu);
+        window.addEventListener('load', openMenu);
+    </script>
+</body>
+
+</html>

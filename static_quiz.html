@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에스티 로더 핑크리본 캠페인 퀴즈</title>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #fdf2f8;
+            /* Pink-50 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.15);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #db2777;
+            /* Pink-600 */
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            background-color: #db2777;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #be185d;
+            /* Pink-700 */
+        }
+
+        .btn-outline {
+            background-color: white;
+            color: #db2777;
+            border: 2px solid #db2777;
+        }
+
+        .btn-outline:hover {
+            background-color: #fdf2f8;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .option {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .option:hover {
+            border-color: #db2777;
+            background-color: #fdf2f8;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #db2777;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .result-score {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #db2777;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Start Screen -->
+        <div id="start-screen">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🎀</div>
+            <h1>핑크리본 캠페인 퀴즈</h1>
+            <p>유방암 인식 향상을 위한 에스티 로더의 캠페인에 대해 얼마나 알고 계신가요?</p>
+            <button class="btn" onclick="startQuiz()">퀴즈 시작하기</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+            <h2 id="question-text" style="margin-bottom: 2rem;">문제</h2>
+            <div id="options-container"></div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="hidden">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
+            <h1>퀴즈 완료!</h1>
+            <p>당신의 점수는?</p>
+            <div class="result-score" id="score-display">0 / 3</div>
+            <p id="result-message"></p>
+            <button class="btn" onclick="location.reload()">다시 도전하기</button>
+            <button class="btn btn-outline" onclick="window.location.href='index.html'">메인으로 돌아가기</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "에스티 로더 컴퍼니즈가 유방암 캠페인을 처음 시작한 해는 언제일까요?",
+                options: ["1985년", "1992년", "2000년", "2010년"],
+                answer: 1
+            },
+            {
+                question: "핑크리본 캠페인의 주요 목적이 아닌 것은 무엇일까요?",
+                options: ["유방암 인지도 제고", "조기 검진의 중요성 알림", "치료법 연구 기금 모금", "화장품 판매 수익 증대"],
+                answer: 3
+            },
+            {
+                question: "전 세계적으로 핑크리본 캠페인을 상징하는 랜드마크 점등 행사의 색깔은?",
+                options: ["파란색", "노란색", "분홍색", "보라색"],
+                answer: 2
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function startQuiz() {
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('question-text').textContent = q.question;
+            document.getElementById('progress').style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option';
+                btn.textContent = opt;
+                btn.onclick = () => checkAnswer(index);
+                container.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex) {
+            if (selectedIndex === questions[currentQuestion].answer) {
+                score++;
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+            document.getElementById('score-display').textContent = `${score} / ${questions.length}`;
+
+            const msg = document.getElementById('result-message');
+            if (score === 3) {
+                msg.textContent = "완벽합니다! 핑크리본 캠페인 마스터시네요! 🎀";
+            } else if (score >= 1) {
+                msg.textContent = "좋아요! 캠페인에 대해 잘 알고 계시군요.";
+            } else {
+                msg.textContent = "괜찮아요, 이제부터 알아가면 되니까요!";
+            }
+        }
+    </script>
+</body>
+
+</html>
